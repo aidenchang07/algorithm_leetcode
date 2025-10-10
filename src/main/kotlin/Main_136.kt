@@ -9,5 +9,20 @@ package com.aiden
  * 連結：https://leetcode.com/problems/single-number/
  */
 fun main() {
+    val nums = intArrayOf(4,1,2,1,2)
+    val result = singleNumber(nums)
+    println("result: $result")
+}
 
+// 自己寫的，時間複雜度 O(n)、空間複雜度 O(n)
+fun singleNumber(nums: IntArray): Int {
+    val map = mutableMapOf<Int, Int>()
+    nums.forEach { i ->
+        map[i]?.let { count ->
+            map[i] = count + 1
+        } ?: run {
+            map[i] = 1
+        }
+    }
+    return map.entries.first { it.value == 1 }.key
 }
