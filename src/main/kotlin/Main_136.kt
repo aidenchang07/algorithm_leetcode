@@ -20,7 +20,17 @@ fun main() {
     println("resultWithReduce: $resultWithReduce")
 }
 
-// 自己寫的，時間複雜度 O(n)、空間複雜度 O(n)
+/**
+ * 使用 HashMap 統計每個數字出現的次數，找出只出現一次的元素。
+ *
+ * 解法說明：
+ * 1. 透過 mutableMapOf 建立一個計數表。
+ * 2. 迭代陣列，若元素已存在則累加次數，否則新增為 1。
+ * 3. 最後從 map 中找出 value == 1 的 key，即為唯一的數字。
+ *
+ * 時間複雜度：O(n) — 每個元素僅遍歷一次。
+ * 空間複雜度：O(n) — 額外使用 HashMap 儲存出現次數。
+ */
 fun singleNumber(nums: IntArray): Int {
     val map = mutableMapOf<Int, Int>()
     nums.forEach { i ->
