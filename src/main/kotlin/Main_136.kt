@@ -15,6 +15,9 @@ fun main() {
 
     val resultWithXor = singleNumberWithXor(nums)
     println("resultWithXor: $resultWithXor")
+
+    val resultWithReduce = singleNumberWithReduce(nums)
+    println("resultWithReduce: $resultWithReduce")
 }
 
 // 自己寫的，時間複雜度 O(n)、空間複雜度 O(n)
@@ -47,4 +50,20 @@ fun singleNumberWithXor(nums: IntArray): Int {
         ans = ans xor x
     }
     return ans
+}
+
+/**
+ * 解法思路（使用 reduce）：
+ * 1. 使用 reduce() 將整個陣列歸納成單一值。
+ * 2. reduce 會以第一個元素為初始累加器 acc，
+ *    並依序與後續元素進行 XOR 運算。
+ * 3. 因為相同的數字會互相抵銷，最後會剩下唯一出現的數。
+ *
+ * 時間複雜度：O(n)
+ * 空間複雜度：O(1)
+ */
+fun singleNumberWithReduce(nums: IntArray): Int {
+    return nums.reduce { acc, i ->
+        acc xor i
+    }
 }
