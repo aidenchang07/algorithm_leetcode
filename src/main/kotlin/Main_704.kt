@@ -18,5 +18,35 @@ package com.aiden
  * 連結：https://leetcode.com/problems/binary-search/
  */
 fun main() {
+    val nums = intArrayOf(-1,0,3,5,9,12)
+    val target = 9
+    val result = binarySearch(nums, target)
+    println("result: ${result}")
+}
 
+/**
+ * 使用二分搜尋法 (Binary Search) 在排序好的整數陣列中尋找目標值。
+ *
+ * @param nums   已遞增排序的整數陣列
+ * @param target 要查找的目標值
+ * @return 若找到目標，回傳索引；否則回傳 -1
+ *
+ * 時間複雜度：O(log n)  — 每次迴圈都將搜尋範圍縮小一半。
+ * 空間複雜度：O(1)      — 僅使用固定變數。
+ */
+fun binarySearch(nums: IntArray, target: Int): Int {
+    var left = 0
+    var right = nums.lastIndex
+    while (left <= right) {
+        val mid = left + (right - left) / 2
+        if (nums[mid] == target) {
+            return mid
+        }
+        if (nums[mid] < target) {
+            left = mid + 1
+        } else {
+            right = mid - 1
+        }
+    }
+    return -1
 }
